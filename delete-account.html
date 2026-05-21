@@ -1,0 +1,165 @@
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div class="eyebrow">Migraine Tracker destek merkezi</div>
+        <h1>Hesap silme talebi oluşturun</h1>
+        <p class="lead">
+          Migraine Tracker hesabınızı ve ilişkili migren kayıtlarınızı
+          silmemizi istiyorsanız aşağıdaki formu doldurun. Talebiniz e-posta
+          olarak iletilir ve manuel olarak işleme alınır.
+        </p>
+
+        <div class="grid">
+          <section class="panel" aria-labelledby="how-it-works">
+            <h2 id="how-it-works">Silme süreci nasıl çalışır?</h2>
+            <p>
+              Talebinizi aldıktan sonra hesabın size ait olduğunu doğrularız ve
+              silme işlemini tamamlarız.
+            </p>
+            <ol class="steps">
+              <li>Formu ad, e-posta ve talep nedeni ile doldurun.</li>
+              <li>Gerekirse ek doğrulama için size geri dönüş yaparız.</li>
+              <li>Onay sonrası hesap ve ilgili veriler kalıcı olarak silinir.</li>
+            </ol>
+            <div class="notice">
+              Not: Güvenlik, kötüye kullanım önleme veya yasal yükümlülükler
+              nedeniyle sınırlı işlem kayıtları tutulabilir.
+            </div>
+            <p class="footer">
+              İsterseniz bu sayfayı Google Play'de veri silme bağlantısı olarak
+              kullanabilirsiniz.
+            </p>
+          </section>
+
+          <section class="panel" aria-labelledby="request-form">
+            <h2 id="request-form">Silme talebi formu</h2>
+            <form id="deleteForm">
+              <label>
+                Ad soyad
+                <input
+                  type="text"
+                  name="fullName"
+                  autocomplete="name"
+                  placeholder="Adınız ve soyadınız"
+                  required
+                />
+              </label>
+
+              <label>
+                Hesap e-postası
+                <input
+                  type="email"
+                  name="accountEmail"
+                  autocomplete="email"
+                  placeholder="Hesabınızda kullandığınız e-posta"
+                  required
+                />
+              </label>
+
+              <label>
+                Talep konusu
+                <select name="requestType" required>
+                  <option value="Account deletion request" selected>
+                    Hesap silme talebi
+                  </option>
+                  <option value="Data deletion request">
+                    Veri silme talebi
+                  </option>
+                </select>
+              </label>
+
+              <label>
+                Açıklama
+                <textarea
+                  name="details"
+                  placeholder="İsterseniz kısa bir açıklama ekleyin."
+                  required
+                ></textarea>
+              </label>
+
+              <label class="checkbox">
+                <input type="checkbox" name="confirm" required />
+                <span>
+                  Hesabımın ve ilişkili migren kayıtlarımın kalıcı olarak
+                  silineceğini anlıyorum.
+                </span>
+              </label>
+
+              <p class="error" id="formError">Lütfen tüm zorunlu alanları doldurun.</p>
+
+              <div class="actions">
+                <button class="button primary" type="submit">
+                  Talep oluştur
+                </button>
+                <button class="button secondary" type="reset">
+                  Temizle
+                </button>
+              </div>
+
+              <p class="small">
+                Talep gönderildiğinde cihazınızın e-posta uygulaması açılır ve
+                mesaj <strong>otomatik olarak</strong> destek ekibine hazırlanır.
+              </p>
+
+              <div class="success" id="successBox">
+                Talep hazırlandı. E-posta uygulamanız açılmazsa varsayılan
+                posta uygulamanızdan mesajı gönderebilirsiniz.
+              </div>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const form = document.getElementById('deleteForm');
+        const errorBox = document.getElementById('formError');
+        const successBox = document.getElementById('successBox');
+        const supportEmail = ['celaloguz.kurtoglu', '@', 'gmail.com'].join('');
+
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(form);
+          const fullName = String(formData.get('fullName') || '').trim();
+          const accountEmail = String(formData.get('accountEmail') || '').trim();
+          const requestType = String(formData.get('requestType') || '').trim();
+          const details = String(formData.get('details') || '').trim();
+          const confirm = formData.get('confirm');
+
+          if (!fullName || !accountEmail || !requestType || !details || !confirm) {
+            errorBox.style.display = 'block';
+            successBox.style.display = 'none';
+            return;
+          }
+
+          errorBox.style.display = 'none';
+
+          const subject = encodeURIComponent(
+            `Migraine Tracker - ${requestType}`,
+          );
+          const body = encodeURIComponent(
+            [
+              'Hesap silme talebi',
+              '',
+              `Ad soyad: ${fullName}`,
+              `Hesap e-postası: ${accountEmail}`,
+              `Talep konusu: ${requestType}`,
+              '',
+              'Açıklama:',
+              details,
+              '',
+              'Lütfen bu talebi işleme alın.',
+            ].join('\n'),
+          );
+
+          successBox.style.display = 'block';
+          window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+        });
+      })();
+    </script>
+  </body>
+</html>
