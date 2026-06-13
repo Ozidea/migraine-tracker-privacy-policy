@@ -1,72 +1,465 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Privacy Policy - Migraine Tracker</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-      color: #222;
-      background: #fff;
-    }
-    h1, h2 {
-      line-height: 1.2;
-    }
-    a {
-      color: #0b57d0;
-    }
-  </style>
-</head>
-<body>
-  <h1>Privacy Policy</h1>
-  <p><strong>App Name:</strong> Migraine Tracker</p>
-  <p><strong>Effective Date:</strong> 15.05.2026</p>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Migraine Tracker hesap silme talebi ve destek sayfası."
+    />
+    <title>Migraine Tracker - Hesap Silme Talebi</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #eef7f2;
+        --bg-2: #dfeee6;
+        --card: rgba(255, 255, 255, 0.82);
+        --card-border: rgba(33, 86, 58, 0.14);
+        --text: #123321;
+        --muted: #557063;
+        --primary: #2d8d5e;
+        --primary-2: #1f6f49;
+        --danger: #b42318;
+        --shadow: 0 24px 70px rgba(15, 52, 33, 0.14);
+        --radius: 24px;
+      }
 
-  <h2>Information We Collect</h2>
-  <p>We may collect the following information when you use the app:</p>
-  <ul>
-    <li>Name</li>
-    <li>Email address</li>
-    <li>User ID</li>
-    <li>Health data related to migraine tracking, including symptoms, triggers, medications, pain score, and related diary entries</li>
-  </ul>
+      * {
+        box-sizing: border-box;
+      }
 
-  <h2>How We Use Information</h2>
-  <p>We use this information to:</p>
-  <ul>
-    <li>Create and manage user accounts</li>
-    <li>Authenticate users</li>
-    <li>Store and sync migraine tracking records</li>
-    <li>Show profile and history information</li>
-    <li>Send password reset emails</li>
-  </ul>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, #ffffff 0, transparent 28%),
+          radial-gradient(circle at top right, rgba(77, 204, 126, 0.18) 0, transparent 30%),
+          linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+      }
 
-  <h2>Tracking and Advertising</h2>
-  <p>We do not use collected data for tracking, third-party advertising, or developer advertising/marketing.</p>
+      .wrap {
+        width: min(100%, 1080px);
+        margin: 0 auto;
+        padding: 40px 20px 56px;
+      }
 
-  <h2>Data Storage</h2>
-  <p>Data is stored securely using Firebase services such as Firebase Authentication and Cloud Firestore.</p>
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--card-border);
+        border-radius: calc(var(--radius) + 8px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
+        box-shadow: var(--shadow);
+        padding: 36px;
+      }
 
-  <h2>Data Retention</h2>
-  <p>We retain your personal data and migraine tracking records for as long as your account is active. If you delete your account, your data is permanently removed from our systems within 30 days, except where we are required to retain limited records for legal, security, or abuse-prevention purposes.</p>
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(6px);
+        pointer-events: none;
+      }
 
-  <h2>How to Delete Your Data</h2>
-  <p>You can request the deletion of your account and all associated data at any time by submitting a deletion request through our account deletion page:</p>
-  <p><a href="https://ozidea.github.io/migraine-tracker-privacy-policy/delete-account">https://ozidea.github.io/migraine-tracker-privacy-policy/delete-accountt</a></p>
-  <p>Upon receiving your request, we will verify your identity and permanently delete your account and all associated migraine records within 30 days.</p>
+      .hero::before {
+        width: 220px;
+        height: 220px;
+        right: -80px;
+        top: -90px;
+        background: rgba(45, 141, 94, 0.13);
+      }
 
-  <h2>Third-Party Services</h2>
-  <p>The app may use Firebase services provided by Google for authentication and database storage.</p>
+      .hero::after {
+        width: 180px;
+        height: 180px;
+        left: -70px;
+        bottom: -80px;
+        background: rgba(31, 111, 73, 0.1);
+      }
 
-  <h2>Children's Privacy</h2>
-  <p>This app is not intended for children under 13.</p>
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(45, 141, 94, 0.12);
+        color: var(--primary-2);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
 
-  <h2>Contact Us</h2>
-  <p>If you have any questions about this Privacy Policy, contact us at: <a href="mailto:celaloguz.kurtoglu@gmail.com">celaloguz.kurtoglu@gmail.com</a></p>
-</body>
+      h1 {
+        margin: 18px 0 10px;
+        font-size: clamp(30px, 4vw, 52px);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+      }
+
+      .lead {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(16px, 1.5vw, 18px);
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .panel {
+        position: relative;
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: 0 18px 50px rgba(15, 52, 33, 0.09);
+        backdrop-filter: blur(18px);
+        padding: 24px;
+      }
+
+      .panel h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+      }
+
+      .panel p,
+      .panel li {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .steps {
+        margin: 16px 0 0;
+        padding-left: 18px;
+      }
+
+      .steps li + li {
+        margin-top: 8px;
+      }
+
+      .notice {
+        margin-top: 18px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(45, 141, 94, 0.08);
+        border: 1px solid rgba(45, 141, 94, 0.18);
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      form {
+        display: grid;
+        gap: 14px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        border: 1px solid rgba(18, 51, 33, 0.15);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--text);
+        padding: 14px 16px;
+        font: inherit;
+        outline: none;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease,
+          transform 0.15s ease;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: rgba(45, 141, 94, 0.7);
+        box-shadow: 0 0 0 4px rgba(45, 141, 94, 0.12);
+      }
+
+      textarea {
+        min-height: 132px;
+        resize: vertical;
+      }
+
+      .checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(18, 51, 33, 0.12);
+      }
+
+      .checkbox input {
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        padding: 0;
+        accent-color: var(--primary);
+      }
+
+      .checkbox span {
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 4px;
+      }
+
+      .button {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        padding: 14px 18px;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          opacity 0.15s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button.primary {
+        color: white;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        box-shadow: 0 16px 30px rgba(45, 141, 94, 0.22);
+      }
+
+      .button.secondary {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(18, 51, 33, 0.12);
+      }
+
+      .small {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .error {
+        display: none;
+        margin: 0;
+        color: var(--danger);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .success {
+        display: none;
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(45, 141, 94, 0.1);
+        border: 1px solid rgba(45, 141, 94, 0.22);
+        color: var(--text);
+      }
+
+      .footer {
+        margin-top: 18px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      @media (max-width: 860px) {
+        .hero,
+        .panel {
+          padding: 20px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div class="eyebrow">Migraine Tracker destek merkezi</div>
+        <h1>Hesap silme talebi oluşturun</h1>
+        <p class="lead">
+          Migraine Tracker hesabınızı ve ilişkili migren kayıtlarınızı
+          silmemizi istiyorsanız aşağıdaki formu doldurun. Talebiniz e-posta
+          olarak iletilir ve manuel olarak işleme alınır.
+        </p>
+
+        <div class="grid">
+          <section class="panel" aria-labelledby="how-it-works">
+            <h2 id="how-it-works">Silme süreci nasıl çalışır?</h2>
+            <p>
+              Talebinizi aldıktan sonra hesabın size ait olduğunu doğrularız ve
+              silme işlemini tamamlarız.
+            </p>
+            <ol class="steps">
+              <li>Formu ad, e-posta ve talep nedeni ile doldurun.</li>
+              <li>Gerekirse ek doğrulama için size geri dönüş yaparız.</li>
+              <li>Onay sonrası hesap ve ilgili veriler kalıcı olarak silinir.</li>
+            </ol>
+            <div class="notice">
+              Not: Güvenlik, kötüye kullanım önleme veya yasal yükümlülükler
+              nedeniyle sınırlı işlem kayıtları tutulabilir.
+            </div>
+            <p class="footer">
+              İsterseniz bu sayfayı Google Play'de veri silme bağlantısı olarak
+              kullanabilirsiniz.
+            </p>
+          </section>
+
+          <section class="panel" aria-labelledby="request-form">
+            <h2 id="request-form">Silme talebi formu</h2>
+            <form id="deleteForm">
+              <label>
+                Ad soyad
+                <input
+                  type="text"
+                  name="fullName"
+                  autocomplete="name"
+                  placeholder="Adınız ve soyadınız"
+                  required
+                />
+              </label>
+
+              <label>
+                Hesap e-postası
+                <input
+                  type="email"
+                  name="accountEmail"
+                  autocomplete="email"
+                  placeholder="Hesabınızda kullandığınız e-posta"
+                  required
+                />
+              </label>
+
+              <label>
+                Talep konusu
+                <select name="requestType" required>
+                  <option value="Account deletion request" selected>
+                    Hesap silme talebi
+                  </option>
+                  <option value="Data deletion request">
+                    Veri silme talebi
+                  </option>
+                </select>
+              </label>
+
+              <label>
+                Açıklama
+                <textarea
+                  name="details"
+                  placeholder="İsterseniz kısa bir açıklama ekleyin."
+                  required
+                ></textarea>
+              </label>
+
+              <label class="checkbox">
+                <input type="checkbox" name="confirm" required />
+                <span>
+                  Hesabımın ve ilişkili migren kayıtlarımın kalıcı olarak
+                  silineceğini anlıyorum.
+                </span>
+              </label>
+
+              <p class="error" id="formError">Lütfen tüm zorunlu alanları doldurun.</p>
+
+              <div class="actions">
+                <button class="button primary" type="submit">
+                  Talep oluştur
+                </button>
+                <button class="button secondary" type="reset">
+                  Temizle
+                </button>
+              </div>
+
+              <p class="small">
+                Talep gönderildiğinde cihazınızın e-posta uygulaması açılır ve
+                mesaj <strong>otomatik olarak</strong> destek ekibine hazırlanır.
+              </p>
+
+              <div class="success" id="successBox">
+                Talep hazırlandı. E-posta uygulamanız açılmazsa varsayılan
+                posta uygulamanızdan mesajı gönderebilirsiniz.
+              </div>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const form = document.getElementById('deleteForm');
+        const errorBox = document.getElementById('formError');
+        const successBox = document.getElementById('successBox');
+        const supportEmail = ['celaloguz.kurtoglu', '@', 'gmail.com'].join('');
+
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(form);
+          const fullName = String(formData.get('fullName') || '').trim();
+          const accountEmail = String(formData.get('accountEmail') || '').trim();
+          const requestType = String(formData.get('requestType') || '').trim();
+          const details = String(formData.get('details') || '').trim();
+          const confirm = formData.get('confirm');
+
+          if (!fullName || !accountEmail || !requestType || !details || !confirm) {
+            errorBox.style.display = 'block';
+            successBox.style.display = 'none';
+            return;
+          }
+
+          errorBox.style.display = 'none';
+
+          const subject = encodeURIComponent(
+            `Migraine Tracker - ${requestType}`,
+          );
+          const body = encodeURIComponent(
+            [
+              'Hesap silme talebi',
+              '',
+              `Ad soyad: ${fullName}`,
+              `Hesap e-postası: ${accountEmail}`,
+              `Talep konusu: ${requestType}`,
+              '',
+              'Açıklama:',
+              details,
+              '',
+              'Lütfen bu talebi işleme alın.',
+            ].join('\n'),
+          );
+
+          successBox.style.display = 'block';
+          window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+        });
+      })();
+    </script>
+  </body>
 </html>
