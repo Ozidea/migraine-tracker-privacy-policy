@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Migren ve Baş Ağrısı Günlüğü</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Migren ve Baş Ağrısı Günlüğü">
+  <meta property="og:description" content="Migren ataklarını, belirtilerini ve ilaçlarını kolayca takip et.">
+  <meta property="og:image" content="https://play-lh.googleusercontent.com/vyHBWz6YFdTGeMgfyDAXAIWMxkbdsWDIaqjwF8nXMN2evBECoBJS5UUsZMtdfAI8f3bPaAXIpcvRNVpkp91FpQ=w240-h480">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:          #F8F4FF;
+      --surface:     #FFFFFF;
+      --primary:     #7C3AED;
+      --primary-dim: #EDE9FE;
+      --text:        #1C1033;
+      --text-soft:   #6B7280;
+      --divider:     #E5E7EB;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 16px 32px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 32px 24px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 4px 24px rgba(124, 58, 237, 0.08);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .app-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.20);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 400ms ease 0ms forwards;
+    }
+
+    .app-name {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 400ms ease 60ms forwards;
+    }
+
+    .app-tagline {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+      max-width: 300px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 400ms ease 120ms forwards;
+    }
+
+    .app-developer {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 400ms ease 180ms forwards;
+    }
+
+    /* ── Buttons ── */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 400ms ease 240ms forwards;
+    }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #000000;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 14px;
+      height: 56px;
+      padding: 0 20px;
+      width: 100%;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .store-btn:hover {
+        transform: scale(0.97);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.20);
+      }
+    }
+
+    .store-btn svg {
+      flex-shrink: 0;
+    }
+
+    .btn-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .btn-text .small {
+      font-size: 0.65rem;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      opacity: 0.85;
+    }
+
+    .btn-text .large {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Features ── */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 400ms ease 300ms forwards;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .feature-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .feature-item:first-child {
+      padding-top: 0;
+    }
+
+    .feature-emoji {
+      font-size: 1.5rem;
+      line-height: 1;
+      background: var(--primary-dim);
+      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .feature-title {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .feature-desc {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 400ms ease 360ms forwards;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Animation ── */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .app-icon,
+      .app-name,
+      .app-tagline,
+      .app-developer,
+      .buttons,
+      .features,
+      footer {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Hero -->
+    <section class="hero">
+      <img
+        class="app-icon"
+        src="https://play-lh.googleusercontent.com/vyHBWz6YFdTGeMgfyDAXAIWMxkbdsWDIaqjwF8nXMN2evBECoBJS5UUsZMtdfAI8f3bPaAXIpcvRNVpkp91FpQ=w240-h480"
+        alt="Migren ve Baş Ağrısı Günlüğü ikon"
+        width="96"
+        height="96"
+      >
+      <h1 class="app-name">Migren ve Baş Ağrısı Günlüğü</h1>
+      <p class="app-tagline">Migren ataklarını, belirtilerini ve ilaçlarını kolayca takip et.</p>
+      <span class="app-developer">Işıl Peker</span>
+    </section>
+
+    <!-- Download Buttons -->
+    <div class="buttons">
+
+      <!-- Google Play -->
+      <a
+        class="store-btn"
+        href="https://play.google.com/store/apps/details?id=com.isilpeker.migrengunlugum"
+        target="_blank"
+        rel="noopener"
+        aria-label="Google Play'den indir"
+      >
+        <!-- Google Play logo SVG (official colors) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google-play" viewBox="0 0 16 16">
+          <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/>
+        </svg>
+        <div class="btn-text">
+          <span class="small">Google Play'de</span>
+          <span class="large">Edinin</span>
+        </div>
+      </a>
+
+      <!-- App Store -->
+      <a
+        class="store-btn"
+        href="https://apps.apple.com/tr/app/migren-ve-ba%C5%9Fa%C4%9Fr%C4%B1s%C4%B1-g%C3%BCnl%C3%BC%C4%9F%C3%BC/id6767247349"
+        target="_blank"
+        rel="noopener"
+        aria-label="App Store'dan indir"
+      >
+        <!-- Apple logo SVG (white) -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-apple" viewBox="0 0 16 16">
+            <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/>
+            <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/>
+          </svg>
+        <div class="btn-text">
+          <span class="small">App Store'dan</span>
+          <span class="large">İndirin</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-emoji" aria-hidden="true">📅</div>
+        <div class="feature-body">
+          <span class="feature-title">Günlük Takip</span>
+          <span class="feature-desc">Her atağını tarih, saat ve yoğunluk ile kaydet.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-emoji" aria-hidden="true">💊</div>
+        <div class="feature-body">
+          <span class="feature-title">İlaç Yönetimi</span>
+          <span class="feature-desc">Kullandığın ilaçları ve dozlarını not al.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-emoji" aria-hidden="true">📊</div>
+        <div class="feature-body">
+          <span class="feature-title">Raporlar</span>
+          <span class="feature-desc">Ataklarının örüntüsünü grafiklerle gör.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>© 2025 Işıl Peker. Tüm hakları saklıdır.</div>
+    <div>
+      <a href="#">Gizlilik Politikası</a>
+      &nbsp;·&nbsp;
+      <a href="#">Destek</a>
+    </div>
+  </footer>
+
+</body>
+</html>
